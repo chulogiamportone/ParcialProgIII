@@ -52,7 +52,7 @@ public class DocumentProcessor {
 
     // hasta aca
     public void processDocument(DocumentJob job) {
-        
+
         // EXAMEN PARTE 2
         // CAMBIO ya no se instancia en funcion sino en constructor
         // ConfigurationManager configManager = new ConfigurationManager();
@@ -65,7 +65,9 @@ public class DocumentProcessor {
             return;
         }
 
-        System.out.println("Ruta absoluta: " + new File(job.getSourceFilePath()).getAbsolutePath());
+        File file = new File(job.getSourceFilePath());
+        System.out.println("Ruta absoluta: " + file.getAbsolutePath());
+        System.out.println("¿Existe?: " + file.exists());
 
         // EXAMN PARTE 5
         // ENLACE DE MANEJADORES
@@ -85,7 +87,7 @@ public class DocumentProcessor {
         // log.error("Solo usuarios Premium pueden usar alta prioridad.");
         // return;
         // }
-        File file = new File(job.getSourceFilePath());
+        
 
         ValidationHandler chain = new FileExistenceHandler();
         chain.linkWith(new FileSizeHandler(configManager))
@@ -94,7 +96,6 @@ public class DocumentProcessor {
         if (!chain.validate(job, file, log)) {
             return; // corta si falla alguna validación
         }
-
 
         // byte[] convertedFile;
 
@@ -122,10 +123,6 @@ public class DocumentProcessor {
 
         byte[] convertedFile = strategy.convert(job, log);
         // hasta aca
-
-
-
-
 
         // EXAMEN PARTE 4
         // UTILIZAMOS LA INTERFA PARA EL LEGACY ARCHIVER ADAPTER

@@ -15,7 +15,7 @@ public class Main {
         //DocumentJob job = new DocumentJob("src/sample.txt", "PDF", "Confidencial", true, user);
         //utilizamos el Builder
         DocumentJob job = new DocumentJob.Builder()
-            .setSourceFilePath("src/example.txt")
+            .setSourceFilePath("src\\sample.txt")
             .setOutputFormat("PDF")
             .setWatermarkText("Confidencial")
             .setHighPriority(true)
